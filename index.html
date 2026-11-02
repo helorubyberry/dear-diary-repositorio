@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dear Diary - Laboratório Docker</title>
+  <meta name="description" content="Dear Diary: um diário pessoal estilo Tumblr.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Barra Superior Rosa com Título do Laboratório -->
+  <header class="barra-superior">
+    <div class="barra-superior__container">
+      <h1 class="logo-tumblr">Dear Diary - Laboratório Docker</h1>
+    </div>
+  </header>
+
+  <!-- Layout Principal Tumblr (Feed à Esquerda + Perfil Amplo à Direita) -->
+  <div class="layout-tumblr">
+    
+    <!-- Feed Principal (Esquerda) -->
+    <main class="feed">
+      <section id="diario" class="diario">
+        <h2 class="secao-titulo">Páginas do diário</h2>
+        <!-- As notas criadas vão entrar aqui -->
+      </section>
+
+      <section id="memorias" class="memorias">
+        <h2 class="secao-titulo">Galeria de memórias</h2>
+        <!-- Galeria acumulativa das fotos enviadas -->
+        <div id="galeria-memorias" class="galeria"></div>
+      </section>
+    </main>
+
+    <!-- Sidebar de Perfil Ampliado (Direita) -->
+    <aside class="sidebar-perfil">
+      <div class="card-perfil-grande">
+        <div class="card-perfil__capa">
+          <img id="foto-capa" src="imagens/plumas.jpg" alt="Foto de Capa">
+        </div>
+        <div class="card-perfil__avatar-wrap">
+          <img id="foto-avatar" src="imagens/flores-projetadas.jpg" alt="Avatar">
+        </div>
+        <div class="card-perfil__info">
+          <h2 id="nome-perfil">rubyberry</h2>
+          <span id="handle-perfil" class="handle">@rubyberry</span>
+          <p id="bio-perfil">✿ Welcome to my digital diary 🕯️🦌🪞</p>
+          
+          <!-- Botões sob a bio -->
+          <div class="acoes-perfil-tumblr">
+            <button id="btn-abrir-modal" class="btn-tumblr-primario">✨ Criar Nota</button>
+            <button id="btn-abrir-perfil" class="btn-tumblr-icone" title="Configurações do Perfil">⚙️</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Player de Vídeo Sidebar -->
+      <div class="card-video-sidebar">
+        <div class="video-container">
+          <iframe id="iframe-video"
+                  src="https://www.youtube.com/embed/r4u3BzM0rqo?autoplay=1&mute=1&playsinline=1&rel=0"
+                  title="Vídeo Pink Tape"
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+        <p class="video-legenda">uma fita rosa para começar ♡</p>
+      </div>
+    </aside>
+
+  </div>
+
+  <footer class="rodape">
+    <p>Dear Diary &middot; escrito à mão, com saudade 🌼</p>
+  </footer>
+
+  <!-- Modal de Criar / Editar Nota -->
+  <div class="modal" id="modal-nota" role="dialog" aria-modal="true" hidden>
+    <div class="modal__moldura modal__moldura--form">
+      <button type="button" class="modal__fechar" id="btn-fechar-modal">&times;</button>
+      <h2 id="modal-titulo-texto">Nova Página do Diário</h2>
+      
+      <form id="form-nota">
+        <input type="hidden" id="nota-id">
+        
+        <div class="campo">
+          <label for="titulo-nota">Título:</label>
+          <input type="text" id="titulo-nota" placeholder="Ex: Tarde de sol..." required>
+        </div>
+
+        <div class="campo">
+          <label for="texto-nota">Conteúdo:</label>
+          <textarea id="texto-nota" rows="5" placeholder="Escreva o que está pensando..." required></textarea>
+        </div>
+
+        <div class="campo">
+          <label for="imagem-nota">Fotos (até 4 imagens simultâneas):</label>
+          <input type="file" id="imagem-nota" accept="image/*" multiple>
+          <small style="display: block; color: var(--marrom); margin-top: 4px; font-size: 0.8rem;">Pressione Ctrl/Shift para selecionar de 1 a 4 fotos de uma vez.</small>
+
+          <div id="aviso-limite-fotos" class="aviso-alerta" style="display: none;"></div>
+          <div id="preview-container" class="preview-grid" style="display: none; margin-top: 10px;"></div>
+        </div>
+
+        <button type="submit" id="btn-salvar-nota" class="botao-salvar">Salvar no Diário 🌸</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de Editar Perfil -->
+  <div class="modal" id="modal-perfil" role="dialog" aria-modal="true" hidden>
+    <div class="modal__moldura modal__moldura--form">
+      <button type="button" class="modal__fechar" id="btn-fechar-perfil">&times;</button>
+      <h2>Configurações do Perfil</h2>
+      
+      <form id="form-perfil">
+        <div class="campo">
+          <label for="input-foto-capa">Foto de Fundo / Capa:</label>
+          <input type="file" id="input-foto-capa" accept="image/*">
+        </div>
+
+        <div class="campo">
+          <label for="input-foto-avatar">Foto de Ícone / Avatar:</label>
+          <input type="file" id="input-foto-avatar" accept="image/*">
+        </div>
+
+        <div class="campo">
+          <label for="input-bio">Descrição / Bio:</label>
+          <textarea id="input-bio" rows="4" placeholder="Sua descrição..."></textarea>
+        </div>
+
+        <button type="submit" class="botao-salvar">Salvar Perfil 💖</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
